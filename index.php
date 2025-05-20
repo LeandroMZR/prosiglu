@@ -281,6 +281,12 @@
         </div>
       </div>
     </section>
+
+    <section id="carrito-section">
+      <h2>Carrito de compras</h2>
+      <ul id="carrito"></ul>
+      <p id="total" class="total-carrito">Total: €0.00</p>
+    </section> 
   </main>
 
   <footer>
