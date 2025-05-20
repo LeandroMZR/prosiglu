@@ -15,6 +15,10 @@
   </header>
   
   <main>
+    <section id="buscador">
+      <input type="text" id="input-busqueda" placeholder="Buscar productos por nombre o categoría..." />
+    </section>    
+
     <section id="catalogo">
       <!-- Panadería y Repostería -->
       <h2>Panadería y Repostería</h2>
