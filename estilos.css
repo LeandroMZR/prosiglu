@@ -136,4 +136,102 @@ header h1 {
   border-radius: 8px;
   font-size: 16px;
 }
+/*CARRITO DE COMPRA*/
+#carrito-section {
+  margin-top: 40px;
+  padding: 20px;
+  border-top: 2px solid var(--verde-pastel);
+  background-color: var(--trigo-pastel);
+  border-radius: 10px;
+}
 
+#carrito {
+  list-style-type: none;
+  margin-bottom: 10px;
+}
+
+#carrito li {
+  padding: 8px;
+  border-bottom: 1px solid var(--verde-oscuro);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#carrito button {
+  background-color: crimson;
+  color: white;
+  border: none;
+  padding: 5px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.total-carrito {
+  font-weight: bold;
+  font-size: 20px;
+  color: var(--verde-oscuro);
+  background-color: #fff9d9;
+  padding: 10px 15px;
+  border: 2px solid var(--verde-pastel);
+  border-radius: 8px;
+  display: inline-block;
+  margin-top: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/*Registrar clientes*/
+
+#registro-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: var(--verde-pastel);
+  padding: 20px;
+  width: 260px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+#registro-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#registro-form label {
+  font-weight: bold;
+  color: var(--trigo-pastel);
+}
+
+#registro-form input {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #e5f0ff;
+  color: #000;
+}
+
+.registro-botones {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.registro-botones button {
+  background-color: var(--blanco);
+  color: black;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.registro-botones button:hover {
+  background-color: var(--verde-pastel);
+  color: white;
+}

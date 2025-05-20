@@ -281,6 +281,29 @@
         </div>
       </div>
     </section>
+
+    <section id="carrito-section">
+      <h2>Carrito de compras</h2>
+      <ul id="carrito"></ul>
+      <p id="total" class="total-carrito">Total: €0.00</p>
+    </section>
+
+  <section id="registro-container">
+    <form id="registro-form">
+      <label for="correo">Correo Gmail:</label>
+      <input type="email" id="correo" name="correo" placeholder="ejemplo@gmail.com" pattern=".+@gmail\.com" required />
+
+      <label for="contrasena-reg">Contraseña:</label>
+      <input type="password" id="contrasena-reg" name="contrasena-reg" required />
+
+      <label for="telefono">Número de teléfono:</label>
+      <input type="tel" id="telefono" name="telefono" placeholder="600123456" pattern="[0-9]{9}" required />
+
+      <div class="registro-botones">
+        <button type="submit">Registrar Cliente</button>
+      </div>
+    </form>
+  </section>
   </main>
 
   <footer>
