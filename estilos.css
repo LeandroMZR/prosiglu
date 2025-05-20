@@ -179,3 +179,59 @@ header h1 {
   margin-top: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+
+/*Registrar clientes*/
+
+#registro-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: var(--verde-pastel);
+  padding: 20px;
+  width: 260px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+#registro-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#registro-form label {
+  font-weight: bold;
+  color: var(--trigo-pastel);
+}
+
+#registro-form input {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #e5f0ff;
+  color: #000;
+}
+
+.registro-botones {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.registro-botones button {
+  background-color: var(--blanco);
+  color: black;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.registro-botones button:hover {
+  background-color: var(--verde-pastel);
+  color: white;
+}
