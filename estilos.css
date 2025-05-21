@@ -3,235 +3,607 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* Cambio de fuente para un toque moderno */
+  font-family: 'Poppins', sans-serif;
+  color: #333; /* Color de texto general más neutro */
 }
 
-/* Colores pastel para la paleta */
+/* Importar fuentes de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* Colores pastel para la paleta - Ligeramente ajustados */
 :root {
-  --verde-pastel: #85b77f;      /* verde suave */
-  --trigo-pastel: #f4e3b2;      /* trigo claro */
-  --verde-oscuro: #4c8c52;      /* verde medio para textos */
-  --trigo-oscuro: #d7c17a;      /* trigo medio para detalles */
-  --blanco: #fff;
+  --verde-pastel: #A2D9CE;   /* Verde suave, más vibrante */
+  --trigo-pastel: #F0E68C;   /* Trigo claro, menos saturado */
+  --verde-oscuro: #2E8B57;   /* Verde oscuro, más profundo */
+  --trigo-oscuro: #DAA520;   /* Trigo medio, para acentos */
+  --blanco: #FFFFFF;
+  --gris-claro: #F8F8F8;
+  --sombra-suave: rgba(0, 0, 0, 0.08); /* Sombra más pronunciada pero suave */
+  --sombra-media: rgba(0, 0, 0, 0.15);
 }
 
 /* Body */
 body {
-  background-color: var(--blanco);
+  background-color: var(--gris-claro); /* Fondo más claro */
   color: var(--verde-oscuro);
-  padding: 20px;
+  padding: 20px; /* Aumentar padding del body ligeramente */
+  line-height: 1.6;
+  padding-top: 80px; /* Adjusted padding-top for the smaller sticky header */
 }
 
 /* Header */
 header {
   text-align: center;
   margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
+  display: flex; /* Change to flexbox for alignment */
+  flex-direction: row; /* Arrange items in a row */
+  justify-content: flex-start; /* Align items to the start (left) */
+  align-items: center; /* Vertically center items */
+  gap: 15px; /* Increased gap between logo and text for better spacing */
+  padding: 8px 20px; /* Reduced vertical padding significantly, increased horizontal */
+  background: linear-gradient(135deg, var(--verde-pastel), var(--verde-oscuro));
+  color: var(--blanco);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px var(--sombra-media);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 80px; /* **Fixed height for the banner to effectively halve its previous size** */
 }
 
 #logo {
-  width: 120px;
-  height: auto;
+  width: 70px; /* Set a specific width to maximize within the new smaller banner height */
+  height: 70px; /* Set height equal to width to maintain aspect ratio and fill space */
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+  border-radius: 50%;
+  border: 3px solid var(--blanco);
+  box-shadow: 0 1px 4px var(--sombra-media);
+  transition: transform 0.3s ease;
+  flex-shrink: 0; /* Prevent the logo from shrinking */
+}
+
+#logo:hover {
+  transform: scale(1.05);
 }
 
 header h1 {
-  color: var(--verde-oscuro);
+  color: var(--blanco);
   font-weight: 700;
+  font-size: 1.6em; /* Slightly adjusted for better fit in smaller banner */
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  margin-right: auto; /* Pushes the description to the right */
 }
 
-/* Catálogo */
-#catalogo {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
+header p {
+  font-size: 0.8em; /* Slightly adjusted for better fit */
+  opacity: 0.9;
+  font-weight: 300;
+  margin-left: 20px; /* Add some left margin for separation */
+  text-align: right; /* Align text to the right within its space */
 }
 
-/* Sección de categoría */
-.categoria {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.categoria h2 {
-  font-size: 24px;
-  color: var(--verde-oscuro);
-  background-color: var(--trigo-pastel);
-  padding: 10px 15px;
-  border-left: 5px solid var(--verde-pastel);
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-/* Lista de productos */
-.lista-productos {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-/* Producto */
-.producto {
-  background-color: var(--trigo-pastel);
-  border: 1px solid var(--trigo-oscuro);
-  border-radius: 10px;
-  padding: 15px;
-  width: 200px;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  transition: transform 0.2s;
-}
-
-.producto:hover {
-  transform: scale(1.03);
-}
-
-.producto img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.producto h3 {
-  font-size: 16px;
-  margin-bottom: 5px;
-}
-
-.producto .precio {
-  font-weight: bold;
-  color: var(--verde-oscuro);
-}
-
-.producto button {
-  background-color: var(--verde-pastel);
-  color: white;
-  border: none;
-  padding: 8px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.producto button:hover {
-  background-color: var(--verde-oscuro);
+/* Main Content Wrapper */
+main {
+  max-width: 1200px; /* Aumentar ancho máximo */
+  margin: 25px auto; /* Más margen */
+  padding: 30px; /* Más padding */
+  background-color: var(--blanco);
+  border-radius: 15px; /* Más redondeado */
+  box-shadow: 0 0 20px rgba(0,0,0,0.05); /* Sombra más sutil */
 }
 
 /* Buscador */
 #buscador {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px; /* Más margen inferior */
 }
 
 #input-busqueda {
-  padding: 10px;
-  width: 60%;
-  max-width: 400px;
-  border: 2px solid var(--verde-pastel);
-  border-radius: 8px;
-  font-size: 16px;
+  padding: 12px 25px; /* Más padding */
+  width: 80%;
+  max-width: 500px; /* Más ancho máximo */
+  border: 2px solid var(--verde-pastel); /* Borde más grueso y pastel */
+  border-radius: 30px; /* Más redondeado */
+  font-size: 1.1em; /* Aumentar fuente */
+  box-shadow: inset 0 2px 5px var(--sombra-suave);
+  outline: none;
+  transition: all 0.3s ease;
 }
-/*CARRITO DE COMPRA*/
+
+#input-busqueda::placeholder {
+  color: #b0b0b0;
+}
+
+#input-busqueda:focus {
+  border-color: var(--verde-oscuro);
+  box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.2); /* Sombra al enfocar */
+}
+
+/* --- CATÁLOGO HIERÁRQUICO --- */
+#catalogo {
+  display: flex;
+  flex-direction: column;
+  gap: 50px; /* Más espacio entre grupos de categorías */
+}
+
+/* Contenedor de cada Categoría (ej: Panadería y Repostería) */
+.categoria-group {
+  margin-bottom: 30px; /* Más espacio entre categorías principales */
+  padding-bottom: 30px;
+  border-bottom: 2px dashed var(--trigo-pastel); /* Borde más pronunciado */
+}
+
+.categoria-group:last-of-type {
+  border-bottom: none;
+}
+
+.categoria-group h2 { /* Título de la Categoría Principal */
+  font-size: 2.8em; /* Aumentar tamaño */
+  color: var(--verde-oscuro);
+  text-align: center;
+  margin-bottom: 35px; /* Más espacio debajo del título */
+  position: relative;
+  padding-bottom: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.categoria-group h2::after { /* Línea decorativa bajo el título de categoría */
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 100px; /* Aumentar ancho de la línea */
+  height: 4px; /* Aumentar grosor de la línea */
+  background-color: var(--verde-pastel);
+  border-radius: 3px;
+}
+
+/* Contenedor de cada Subcategoría (ej: Panes, Galletas) */
+.subcategoria-group {
+  margin-bottom: 40px; /* Más espacio entre subcategorías */
+  background-color: var(--gris-claro); /* Fondo más claro */
+  padding: 25px; /* Más padding */
+  border-left: 8px solid var(--verde-pastel); /* Borde izquierdo más grueso */
+  border-radius: 10px; /* Más redondeado */
+  box-shadow: 0 4px 12px var(--sombra-suave); /* Sombra más definida */
+  transition: transform 0.3s ease;
+}
+
+.subcategoria-group:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px var(--sombra-media);
+}
+
+.subcategoria-group h3 { /* Título de la Subcategoría */
+  font-size: 1.8em; /* Aumentar tamaño */
+  color: var(--verde-oscuro);
+  margin-bottom: 25px; /* Más espacio */
+  border-bottom: 1px solid var(--trigo-oscuro);
+  padding-bottom: 10px;
+  font-weight: 600;
+}
+
+/* Contenedor de la Rejilla de Productos */
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Columnas un poco más grandes */
+  gap: 30px; /* Más espacio entre productos */
+  justify-content: center;
+}
+
+/* Estilo Individual del Producto */
+.producto {
+  background-color: var(--blanco);
+  border: 1px solid #eee; /* Borde más suave */
+  border-radius: 12px; /* Más redondeado */
+  padding: 20px; /* Más padding */
+  text-align: center;
+  box-shadow: 0 5px 15px var(--sombra-suave); /* Sombra más suave */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 300px; /* Ajuste para mantener tamaño razonable */
+  overflow: hidden; /* Ocultar contenido extra */
+}
+
+.producto:hover {
+  transform: translateY(-8px); /* Mayor elevación */
+  box-shadow: 0 10px 25px var(--sombra-media); /* Sombra más pronunciada */
+}
+
+.producto img {
+  max-width: 100%;
+  height: 150px; /* Aumentar altura fija para las imágenes ligeramente */
+  object-fit: contain;
+  margin: 0 auto 15px auto; /* Más margen inferior */
+  border-radius: 8px; /* Bordes redondeados en imágenes */
+}
+
+.producto h4 {
+  font-size: 1.3em; /* Aumentar tamaño de fuente */
+  color: var(--verde-oscuro);
+  margin-bottom: 10px; /* Más margen */
+  min-height: 2.6em; /* Ajustar altura mínima para 2 líneas */
+  font-weight: 600;
+}
+
+.producto .precio {
+  font-weight: bold;
+  font-size: 1.8em; /* Aumentar tamaño de fuente */
+  color: var(--verde-oscuro);
+  margin-top: auto;
+  margin-bottom: 15px; /* Más margen */
+}
+
+.producto button {
+  background-color: var(--verde-pastel);
+  color: var(--blanco);
+  border: none;
+  padding: 12px 20px; /* Más padding */
+  border-radius: 8px; /* Más redondeado */
+  cursor: pointer;
+  font-size: 1.1em; /* Aumentar fuente */
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.producto button:hover {
+  background-color: var(--verde-oscuro);
+  transform: translateY(-2px); /* Mayor elevación */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.producto button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+
+/* --- CARRITO DE COMPRA --- */
 #carrito-section {
-  margin-top: 40px;
-  padding: 20px;
-  border-top: 2px solid var(--verde-pastel);
-  background-color: var(--trigo-pastel);
-  border-radius: 10px;
+  margin-top: 50px; /* Más margen superior */
+  padding: 30px; /* Más padding */
+  border-top: 2px solid var(--verde-pastel); /* Borde más grueso */
+  background-color: var(--gris-claro); /* Fondo más claro */
+  border-radius: 15px; /* Más redondeado */
+  box-shadow: 0 5px 15px var(--sombra-suave); /* Sombra más definida */
+}
+
+#carrito-section h2 {
+  text-align: center;
+  color: var(--verde-oscuro);
+  font-size: 2.5em; /* Aumentar tamaño */
+  margin-bottom: 25px; /* Más margen */
+  font-weight: 600;
 }
 
 #carrito {
   list-style-type: none;
-  margin-bottom: 10px;
+  padding: 0;
+  margin-bottom: 20px; /* Más margen */
+  border: 1px solid var(--trigo-pastel);
+  border-radius: 10px; /* Más redondeado */
+  background-color: var(--blanco);
+  min-height: 80px; /* Aumentar altura mínima */
+  padding: 15px; /* Más padding */
+  box-shadow: inset 0 1px 5px rgba(0,0,0,0.05);
 }
 
 #carrito li {
-  padding: 8px;
-  border-bottom: 1px solid var(--verde-oscuro);
+  padding: 10px 0; /* Más padding */
+  border-bottom: 1px dashed var(--trigo-pastel);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 1.1em; /* Aumentar fuente */
+  color: #555;
+}
+
+#carrito li:last-child {
+  border-bottom: none;
 }
 
 #carrito button {
   background-color: crimson;
   color: white;
   border: none;
-  padding: 5px 8px;
-  border-radius: 4px;
+  padding: 6px 10px;
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 0.9em; /* Aumentar fuente */
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#carrito button:hover {
+  background-color: #d00;
+  transform: translateY(-1px);
+}
+#carrito button:active {
+  transform: translateY(0);
 }
 
 .total-carrito {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 2.2em; /* Aumentar tamaño */
   color: var(--verde-oscuro);
-  background-color: #fff9d9;
-  padding: 10px 15px;
-  border: 2px solid var(--verde-pastel);
-  border-radius: 8px;
+  background-color: var(--blanco);
+  padding: 15px 25px; /* Más padding */
+  border: 1px solid var(--verde-pastel);
+  border-radius: 10px; /* Más redondeado */
   display: inline-block;
-  margin-top: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-top: 20px; /* Más margen */
+  box-shadow: 0 3px 8px var(--sombra-suave);
+  float: right;
+  clear: both; /* Asegurar que no flote al lado de otros elementos */
 }
 
-/*Registrar clientes*/
-
+/* --- REGISTRO DE CLIENTES --- */
 #registro-container {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--verde-pastel);
-  padding: 20px;
-  width: 260px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
+  max-width: 500px; /* Aumentar ancho máximo */
+  margin: 60px auto 20px auto; /* Más margen */
+  background: linear-gradient(135deg, var(--verde-oscuro), #4CAF50); /* Degradado más oscuro y vibrante */
+  padding: 30px; /* Más padding */
+  border-radius: 15px; /* Más redondeado */
+  box-shadow: 0 8px 20px var(--sombra-media); /* Sombra más fuerte */
+  color: var(--blanco); /* Texto blanco para contraste */
+}
+
+#registro-container h2 {
+  text-align: center;
+  color: var(--blanco);
+  font-size: 2em;
+  margin-bottom: 25px;
+  font-weight: 600;
 }
 
 #registro-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px; /* Más espacio entre campos */
 }
 
 #registro-form label {
-  font-weight: bold;
-  color: var(--trigo-pastel);
+  font-weight: 500; /* Menos negrita */
+  color: var(--blanco);
+  font-size: 1.1em; /* Aumentar fuente */
 }
 
 #registro-form input {
-  padding: 10px;
+  padding: 12px; /* Más padding */
   border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  background-color: #e5f0ff;
-  color: #000;
+  border-radius: 8px; /* Más redondeado */
+  font-size: 1.05em; /* Aumentar fuente */
+  background-color: rgba(255, 255, 255, 0.9); /* Blanco semitransparente */
+  color: #333;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+#registro-form input::placeholder {
+  color: #ccc;
+}
+
+#registro-form input:focus {
+  outline: 2px solid var(--trigo-pastel); /* Contorno más visible */
+  background-color: var(--blanco);
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.2);
 }
 
 .registro-botones {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 30px; /* Más margen */
 }
 
 .registro-botones button {
   background-color: var(--blanco);
-  color: black;
-  font-weight: bold;
-  padding: 10px 20px;
+  color: var(--verde-oscuro);
+  font-weight: 700;
+  padding: 12px 30px; /* Más padding */
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.3s ease;
+  font-size: 1.2em; /* Aumentar fuente */
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .registro-botones button:hover {
-  background-color: var(--verde-pastel);
-  color: white;
+  background-color: var(--trigo-pastel);
+  color: var(--verde-oscuro);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+}
+.registro-botones button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* --- Footer --- */
+footer {
+  text-align: center;
+  padding: 25px; /* Más padding */
+  margin-top: 50px; /* Más margen */
+  background-color: var(--verde-oscuro);
+  color: var(--blanco);
+  font-size: 1em;
+  border-radius: 12px; /* Más redondeado */
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+  font-weight: 300;
+}
+
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 992px) {
+  .productos-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+  }
+
+  .categoria-group h2 {
+    font-size: 2.2em;
+  }
+
+  .subcategoria-group h3 {
+    font-size: 1.6em;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+    padding-top: 70px; /* Adjusted padding-top for tablet header height */
+  }
+
+  main {
+    padding: 20px;
+    margin: 15px auto;
+  }
+
+  .productos-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+  }
+
+  header {
+    height: 70px; /* Slightly smaller height for tablets */
+    padding: 8px 15px;
+  }
+  #logo {
+    width: 60px;
+    height: 60px;
+  }
+  header h1 {
+    font-size: 1.4em;
+  }
+  header p {
+    font-size: 0.7em;
+  }
+
+  .categoria-group h2 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+  }
+
+  .subcategoria-group {
+    padding: 20px;
+  }
+
+  .subcategoria-group h3 {
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+  }
+
+  .producto {
+    padding: 15px;
+    min-height: 280px;
+  }
+
+  .producto img {
+    height: 130px;
+    margin-bottom: 10px;
+  }
+
+  .producto h4 {
+    font-size: 1.2em;
+  }
+
+  .producto .precio {
+    font-size: 1.5em;
+  }
+
+  #input-busqueda {
+    width: 95%;
+  }
+
+  #registro-container {
+    padding: 25px;
+  }
+
+  #carrito-section h2 {
+    font-size: 2.2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .productos-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .producto {
+    width: 100%;
+    margin: 0 auto;
+    min-height: 260px;
+  }
+  .producto img {
+    height: 100px;
+  }
+
+  body {
+    padding-top: 60px; /* Adjusted padding-top for mobile header height */
+  }
+
+  header {
+    height: 60px; /* Smallest height for mobile */
+    padding: 8px 10px;
+    flex-wrap: wrap; /* Allow items to wrap if space is too constrained */
+    justify-content: center; /* Center content if it wraps */
+    gap: 10px;
+  }
+  #logo {
+    width: 50px;
+    height: 50px;
+  }
+  header h1 {
+    font-size: 1.2em;
+    margin-right: 0; /* Remove auto margin on wrap */
+    text-align: center;
+    width: 100%; /* Take full width if wrapped */
+  }
+  header p {
+    font-size: 0.65em;
+    margin-left: 0; /* Remove left margin on wrap */
+    text-align: center;
+    width: 100%; /* Take full width if wrapped */
+  }
+
+  .categoria-group h2 {
+    font-size: 1.5em;
+  }
+
+  .subcategoria-group h3 {
+    font-size: 1.2em;
+    padding: 10px;
+  }
+
+  #input-busqueda {
+    width: 100%;
+    font-size: 1em;
+  }
+
+  #carrito-section, #registro-container {
+    padding: 15px;
+  }
+
+  .total-carrito {
+    font-size: 1.8em;
+    padding: 10px 15px;
+  }
+
+  .registro-botones button {
+    font-size: 1em;
+    padding: 10px 20px;
+  }
 }

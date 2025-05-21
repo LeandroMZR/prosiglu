@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 20-05-2025 a las 17:33:33
+-- Servidor: localhost
+-- Tiempo de generación: 21-05-2025 a las 13:09:29
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -32,6 +32,13 @@ CREATE TABLE `carritos` (
   `usuario_id` int(11) NOT NULL,
   `fecha_creacion` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `carritos`
+--
+
+INSERT INTO `carritos` (`id`, `usuario_id`, `fecha_creacion`) VALUES
+(1, 1, '2025-05-21 12:40:53');
 
 -- --------------------------------------------------------
 
@@ -88,42 +95,42 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`gtin`, `nombre`, `descripcion`, `precio`, `imagen`, `subcategoria_id`) VALUES
-('8499990000015', 'Pan de molde sin gluten', NULL, 2.50, 'imagenes/panMolde.jpg', 1),
-('8499990000023', 'Pan baguette sin gluten', NULL, 2.80, 'imagenes/panBaguette.jpg', 1),
-('8499990000030', 'Pan de centeno sin gluten', NULL, 2.70, 'imagenes/panCenteno.jpg', 1),
-('8499990000047', 'Pan rústico sin gluten', NULL, 2.90, 'imagenes/panRustico.jpg', 1),
-('8499990000054', 'Base de pizza fina sin gluten', NULL, 3.00, 'imagenes/basePizzaFina.jpg', 2),
-('8499990000061', 'Base de pizza gruesa sin gluten', NULL, 3.20, 'imagenes/basePizzaGruesa.jpg', 2),
-('8499990000078', 'Galletas de chocolate sin gluten', NULL, 2.60, 'imagenes/galletasChocolate.jpg', 3),
-('8499990000085', 'Galletas de avena sin gluten', NULL, 2.40, 'imagenes/galletasAvena.jpg', 3),
-('8499990000092', 'Galletas María sin gluten', NULL, 2.30, 'imagenes/galletaMaria.jpg', 3),
-('8499990000108', 'Muffins de chocolate sin gluten', NULL, 3.20, 'imagenes/muffinsChocolate.jpg', 4),
-('8499990000115', 'Croissants sin gluten', NULL, 3.00, 'imagenes/croissants.jpg', 4),
-('8499990000122', 'Napolitanas sin gluten', NULL, 3.10, 'imagenes/napolitanas.jpg', 4),
-('8499990000139', 'Bizcocho de vainilla sin gluten', NULL, 3.50, 'imagenes/bizcochoVainilla.jpg', 5),
-('8499990000146', 'Brownie sin gluten', NULL, 3.70, 'imagenes/brownie.jpg', 5),
-('8499990000153', 'Tarta de queso sin gluten', NULL, 4.00, 'imagenes/tartaQueso.jpg', 5),
-('8499990000160', 'Barritas energéticas de frutos secos', NULL, 1.80, 'imagenes/barritasEnergeticasFrutosSecos.jpg', 6),
-('8499990000177', 'Barritas energéticas de chocolate', NULL, 1.90, 'imagenes/barritasEnergeticasChocolate.jpg', 6),
-('8499990000184', 'Granola con miel sin gluten', NULL, 2.50, 'imagenes/granolaMiel.jpg', 6),
-('8499990000191', 'Granola con chocolate sin gluten', NULL, 2.60, 'imagenes/granolaChocolate.jpg', 6),
-('8499990000207', 'Almendras saborizadas sin gluten', NULL, 2.20, 'imagenes/almendrasSaborizadas.jpg', 6),
-('8499990000214', 'Espaguetis sin gluten', NULL, 2.90, 'imagenes/espaguetis.jpg', 7),
-('8499990000221', 'Macarrones sin gluten', NULL, 2.80, 'imagenes/macarrones.jpg', 7),
-('8499990000238', 'Lasaña sin gluten', NULL, 3.20, 'imagenes/lasaña.jpg', 7),
-('8499990000245', 'Harina de arroz sin gluten', NULL, 1.50, 'imagenes/harinaArroz.jpg', 8),
-('8499990000252', 'Harina de almendra sin gluten', NULL, 2.30, 'imagenes/harinaAlmendra.jpg', 8),
-('8499990000269', 'Harina de coco sin gluten', NULL, 2.00, 'imagenes/harinaCoco.jpg', 8),
-('8499990000276', 'Pizza margarita sin gluten', NULL, 4.00, 'imagenes/pizzaMargarita.jpg', 9),
-('8499990000283', 'Pizza cuatro quesos sin gluten', NULL, 4.20, 'imagenes/pizzaCuatroQuesos.jpg', 9),
-('8499990000290', 'Empanadas de carne sin gluten', NULL, 3.90, 'imagenes/empanadaCarne.jpg', 9),
-('8499990000306', 'Lasaña boloñesa sin gluten', NULL, 4.50, 'imagenes/lasañaBoloñesa.jpg', 9),
-('8499990000313', 'San Jacobos sin gluten', NULL, 4.30, 'imagenes/sanJacobos.jpg', 9),
-('8499990000320', 'Nuggets de pollo sin gluten', NULL, 3.80, 'imagenes/nuggetsPollo.jpg', 9),
-('8499990000337', 'Cerveza rubia sin gluten', NULL, 1.80, 'imagenes/cervezaRubia.jpg', 10),
-('8499990000344', 'Cerveza negra sin gluten', NULL, 2.00, 'imagenes/cervezaNegra.jpg', 10),
-('8499990000351', 'Fingers de pollo sin gluten', NULL, 3.50, 'imagenes/fingersPollo.jpg', 11),
-('8499990000368', 'Milanesa de ternera sin gluten', NULL, 3.90, 'imagenes/milanesa.jpeg', 11);
+('8499990000015', 'Pan de molde\r\n', NULL, 2.50, 'panMolde.jpg', 1),
+('8499990000023', 'Pan baguette', NULL, 2.80, 'panBaguette.jpg', 1),
+('8499990000030', 'Pan de centeno', NULL, 2.70, 'panCenteno.jpg', 1),
+('8499990000047', 'Pan rústico', NULL, 2.90, 'panRustico.jpg', 1),
+('8499990000054', 'Base de pizza fina', NULL, 3.00, 'basePizzaFina.jpg', 2),
+('8499990000061', 'Base de pizza gruesa', NULL, 3.20, 'basePizzaGruesa.jpg', 2),
+('8499990000078', 'Galletas de chocolate', NULL, 2.60, 'galletasChocolate.jpg', 3),
+('8499990000085', 'Galletas de avena', NULL, 2.40, 'galletasAvena.jpg', 3),
+('8499990000092', 'Galletas María', NULL, 2.30, 'galletaMaria.jpg', 3),
+('8499990000108', 'Muffins de chocolate', NULL, 3.20, 'muffinsChocolate.jpg', 4),
+('8499990000115', 'Croissants', NULL, 3.00, 'croissants.jpg', 4),
+('8499990000122', 'Napolitanas', NULL, 3.10, 'napolitanas.jpg', 4),
+('8499990000139', 'Bizcocho de vainilla', NULL, 3.50, 'bizcochoVainilla.jpg', 5),
+('8499990000146', 'Brownie', NULL, 3.70, 'brownie.jpg', 5),
+('8499990000153', 'Tarta de queso', NULL, 4.00, 'tartaQueso.jpg', 5),
+('8499990000160', 'Barritas energéticas de frutos secos', NULL, 1.80, 'barritasEnergeticasFrutosSecos.jpg', 6),
+('8499990000177', 'Barritas energéticas de chocolate', NULL, 1.90, 'barritasEnergeticasChocolate.jpg', 6),
+('8499990000184', 'Granola con miel', NULL, 2.50, 'granolaMiel.jpg', 6),
+('8499990000191', 'Granola con chocolate', NULL, 2.60, 'granolaChocolate.jpg', 6),
+('8499990000207', 'Almendras saborizadas', NULL, 2.20, 'almendrasSaborizadas.jpg', 6),
+('8499990000214', 'Espaguetis', NULL, 2.90, 'espaguetis.jpg', 7),
+('8499990000221', 'Macarrones', NULL, 2.80, 'macarrones.jpg', 7),
+('8499990000238', 'Lasaña', NULL, 3.20, 'lasaña.jpg', 7),
+('8499990000245', 'Harina de arroz', NULL, 1.50, 'harinaArroz.jpg', 8),
+('8499990000252', 'Harina de almendra', NULL, 2.30, 'harinaAlmendra.jpg', 8),
+('8499990000269', 'Harina de coco', NULL, 2.00, 'harinaCoco.jpg', 8),
+('8499990000276', 'Pizza margarita', NULL, 4.00, 'pizzaMargarita.jpg', 9),
+('8499990000283', 'Pizza cuatro quesos', NULL, 4.20, 'pizzaCuatroQuesos.jpg', 9),
+('8499990000290', 'Empanadas de carne', NULL, 3.90, 'empanadaCarne.jpg', 9),
+('8499990000306', 'Lasaña boloñesa', NULL, 4.50, 'lasañaBoloñesa.jpg', 9),
+('8499990000313', 'San Jacobos', NULL, 4.30, 'sanJacobos.jpg', 9),
+('8499990000320', 'Nuggets de pollo', NULL, 3.80, 'nuggetsPollo.jpg', 9),
+('8499990000337', 'Cerveza rubia', NULL, 1.80, 'cervezaRubia.jpg', 10),
+('8499990000344', 'Cerveza negra', NULL, 2.00, 'cervezaNegra.jpg', 10),
+('8499990000351', 'Fingers de pollo', NULL, 3.50, 'fingersPollo.jpg', 11),
+('8499990000368', 'Milanesa de ternera', NULL, 3.90, 'milanesa.jpeg', 11);
 
 -- --------------------------------------------------------
 
@@ -167,6 +174,13 @@ CREATE TABLE `usuarios` (
   `telefono` varchar(20) DEFAULT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `usuario`, `email`, `telefono`, `password`) VALUES
+(1, 'hola@gmail.com', 'hola@gmail.com', '543455467', '$2y$10$MUSl4ClUywN0TkHisE.hneRl6ZR9CAWHgyCCInyhUhRPLCOTMo.k6');
 
 --
 -- Índices para tablas volcadas
@@ -224,7 +238,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `carritos`
 --
 ALTER TABLE `carritos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `carrito_productos`
@@ -248,7 +262,7 @@ ALTER TABLE `subcategorias`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
