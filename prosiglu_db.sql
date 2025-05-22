@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 21-05-2025 a las 13:09:29
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 22-05-2025 a las 20:11:30
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -38,7 +38,11 @@ CREATE TABLE `carritos` (
 --
 
 INSERT INTO `carritos` (`id`, `usuario_id`, `fecha_creacion`) VALUES
-(1, 1, '2025-05-21 12:40:53');
+(1, 1, '2025-05-21 12:40:53'),
+(2, 2, '2025-05-21 17:01:30'),
+(3, 4, '2025-05-21 18:16:15'),
+(4, 5, '2025-05-21 18:21:09'),
+(5, 6, '2025-05-22 20:01:08');
 
 -- --------------------------------------------------------
 
@@ -172,15 +176,22 @@ CREATE TABLE `usuarios` (
   `usuario` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
   `telefono` varchar(20) DEFAULT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `ciudad` varchar(100) DEFAULT NULL,
+  `cp` varchar(10) DEFAULT NULL,
+  `direccion` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `usuario`, `email`, `telefono`, `password`) VALUES
-(1, 'hola@gmail.com', 'hola@gmail.com', '543455467', '$2y$10$MUSl4ClUywN0TkHisE.hneRl6ZR9CAWHgyCCInyhUhRPLCOTMo.k6');
+INSERT INTO `usuarios` (`id`, `usuario`, `email`, `telefono`, `password`, `ciudad`, `cp`, `direccion`) VALUES
+(1, 'hola@gmail.com', 'hola@gmail.com', '543455467', '$2y$10$MUSl4ClUywN0TkHisE.hneRl6ZR9CAWHgyCCInyhUhRPLCOTMo.k6', NULL, NULL, NULL),
+(2, 'ejemplo@gmail.com', 'ejemplo@gmail.com', '987654321', '$2y$10$boIiviiyF3vj8JLrX57omO1hMxIYsqUQTjNulb8YNS3PeRuA6UdN.', NULL, NULL, NULL),
+(4, 'ejempla@gmail.com', 'ejempla@gmail.com', '987654321', '$2y$10$RakA9gEcFteA7h6vSJuMo.E8H3Ej31/med0zluP6wknUdrequUHvW', NULL, NULL, NULL),
+(5, 'wiwiwi@wiwi.wi', 'wiwiwi@wiwi.wi', '123456789', '$2y$10$URD/tnYKyTBitTZJx95PrehZrGAhIBzjktdVY/osxyj4GaePBKkXm', NULL, NULL, NULL),
+(6, 'ejemplo2@gmail.com', 'ejemplo2@gmail.com', '214365870', '$2y$10$AVvMRQmZgLIuFT1MEcqz4OViflsTTxAJe4kKul5vvr7P2LixLXLYa', 'Ejemplo', '12345', 'Calle de Ejemplo, 2');
 
 --
 -- Índices para tablas volcadas
@@ -238,7 +249,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `carritos`
 --
 ALTER TABLE `carritos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `carrito_productos`
@@ -262,7 +273,7 @@ ALTER TABLE `subcategorias`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas

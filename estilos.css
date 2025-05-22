@@ -1,47 +1,64 @@
-/* Reset básico */
+/* ========= GLOBAL RESETS & FONT IMPORT ========= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* Cambio de fuente para un toque moderno */
   font-family: 'Poppins', sans-serif;
-  color: #333; /* Color de texto general más neutro */
+  color: #333; /* Default text color */
 }
 
-/* Importar fuentes de Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-
-/* Colores pastel para la paleta - Ligeramente ajustados */
+/* ========= CSS VARIABLES (THEME) ========= */
 :root {
-  --verde-pastel: #A2D9CE;   /* Verde suave, más vibrante */
-  --trigo-pastel: #F0E68C;   /* Trigo claro, menos saturado */
-  --verde-oscuro: #2E8B57;   /* Verde oscuro, más profundo */
-  --trigo-oscuro: #DAA520;   /* Trigo medio, para acentos */
+  --verde-pastel: #A2D9CE;
+  --trigo-pastel: #F0E68C;
+  --verde-oscuro: #2E8B57; /* Main interactive color */
+  --verde-accion: #5cb85c; /* A slightly lighter green for actions */
+  --verde-accion-hover: #4cae4c;
+  --trigo-oscuro: #DAA520;
   --blanco: #FFFFFF;
-  --gris-claro: #F8F8F8;
-  --sombra-suave: rgba(0, 0, 0, 0.08); /* Sombra más pronunciada pero suave */
+  --gris-claro: #F8F8F8; /* Light background */
+  --gris-medio: #f0f0f0; /* Slightly darker grey */
+  --gris-borde: #ddd;   /* Border color */
+  --gris-input-borde: #ccc;
+  --rojo-error: crimson;
+  --rojo-error-hover: #d00;
+  --texto-primario: #333;
+  --texto-secundario: #555;
+  --enlace-primario: #337ab7;
+  --sombra-suave: rgba(0, 0, 0, 0.08);
   --sombra-media: rgba(0, 0, 0, 0.15);
 }
 
-/* Body */
+/* ========= BODY & MAIN LAYOUT ========= */
 body {
-  background-color: var(--gris-claro); /* Fondo más claro */
-  color: var(--verde-oscuro);
-  padding: 20px; /* Aumentar padding del body ligeramente */
+  background-color: var(--gris-claro);
+  color: var(--texto-primario); /* Changed from --verde-oscuro to a more general text color */
+  padding: 20px;
   line-height: 1.6;
-  padding-top: 80px; /* Adjusted padding-top for the smaller sticky header */
+  padding-top: 80px; /* Account for sticky header */
 }
 
-/* Header */
+main {
+  max-width: 1200px;
+  margin: 25px auto;
+  padding: 30px;
+  background-color: var(--blanco);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
+
+/* ========= HEADER ========= */
 header {
   text-align: center;
   margin-bottom: 20px;
-  display: flex; /* Change to flexbox for alignment */
-  flex-direction: row; /* Arrange items in a row */
-  justify-content: flex-start; /* Align items to the start (left) */
-  align-items: center; /* Vertically center items */
-  gap: 15px; /* Increased gap between logo and text for better spacing */
-  padding: 8px 20px; /* Reduced vertical padding significantly, increased horizontal */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  padding: 8px 20px;
   background: linear-gradient(135deg, var(--verde-pastel), var(--verde-oscuro));
   color: var(--blanco);
   border-radius: 8px;
@@ -49,20 +66,19 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  height: 80px; /* **Fixed height for the banner to effectively halve its previous size** */
+  height: 80px;
 }
 
 #logo {
-  width: 70px; /* Set a specific width to maximize within the new smaller banner height */
-  height: 70px; /* Set height equal to width to maintain aspect ratio and fill space */
-  object-fit: cover; /* Ensures the image covers the area without distortion */
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
   border-radius: 50%;
   border: 3px solid var(--blanco);
   box-shadow: 0 1px 4px var(--sombra-media);
   transition: transform 0.3s ease;
-  flex-shrink: 0; /* Prevent the logo from shrinking */
+  flex-shrink: 0;
 }
-
 #logo:hover {
   transform: scale(1.05);
 }
@@ -70,292 +86,123 @@ header {
 header h1 {
   color: var(--blanco);
   font-weight: 700;
-  font-size: 1.6em; /* Slightly adjusted for better fit in smaller banner */
+  font-size: 1.6em;
   letter-spacing: 1px;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-  margin-right: auto; /* Pushes the description to the right */
+  margin-right: auto;
 }
 
-header p {
-  font-size: 0.8em; /* Slightly adjusted for better fit */
+header p { /* Subtitle in header */
+  color: var(--blanco); /* Ensure it's white */
+  font-size: 0.8em;
   opacity: 0.9;
   font-weight: 300;
-  margin-left: 20px; /* Add some left margin for separation */
-  text-align: right; /* Align text to the right within its space */
+  margin-left: 20px;
+  text-align: right;
 }
 
-/* Main Content Wrapper */
-main {
-  max-width: 1200px; /* Aumentar ancho máximo */
-  margin: 25px auto; /* Más margen */
-  padding: 30px; /* Más padding */
-  background-color: var(--blanco);
-  border-radius: 15px; /* Más redondeado */
-  box-shadow: 0 0 20px rgba(0,0,0,0.05); /* Sombra más sutil */
+/* ========= SESSION STATUS & MESSAGES (from index.php) ========= */
+.session-status {
+  text-align: right;
+  padding: 10px;
+  background-color: var(--gris-medio);
+  margin-bottom: 15px;
+  border-radius: 5px;
 }
-
-/* Buscador */
-#buscador {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 40px; /* Más margen inferior */
+.session-status p {
+  margin: 0;
+  color: var(--texto-primario);
 }
-
-#input-busqueda {
-  padding: 12px 25px; /* Más padding */
-  width: 80%;
-  max-width: 500px; /* Más ancho máximo */
-  border: 2px solid var(--verde-pastel); /* Borde más grueso y pastel */
-  border-radius: 30px; /* Más redondeado */
-  font-size: 1.1em; /* Aumentar fuente */
-  box-shadow: inset 0 2px 5px var(--sombra-suave);
-  outline: none;
-  transition: all 0.3s ease;
-}
-
-#input-busqueda::placeholder {
-  color: #b0b0b0;
-}
-
-#input-busqueda:focus {
-  border-color: var(--verde-oscuro);
-  box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.2); /* Sombra al enfocar */
-}
-
-/* --- CATÁLOGO HIERÁRQUICO --- */
-#catalogo {
-  display: flex;
-  flex-direction: column;
-  gap: 50px; /* Más espacio entre grupos de categorías */
-}
-
-/* Contenedor de cada Categoría (ej: Panadería y Repostería) */
-.categoria-group {
-  margin-bottom: 30px; /* Más espacio entre categorías principales */
-  padding-bottom: 30px;
-  border-bottom: 2px dashed var(--trigo-pastel); /* Borde más pronunciado */
-}
-
-.categoria-group:last-of-type {
-  border-bottom: none;
-}
-
-.categoria-group h2 { /* Título de la Categoría Principal */
-  font-size: 2.8em; /* Aumentar tamaño */
-  color: var(--verde-oscuro);
-  text-align: center;
-  margin-bottom: 35px; /* Más espacio debajo del título */
-  position: relative;
-  padding-bottom: 10px;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.categoria-group h2::after { /* Línea decorativa bajo el título de categoría */
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  width: 100px; /* Aumentar ancho de la línea */
-  height: 4px; /* Aumentar grosor de la línea */
-  background-color: var(--verde-pastel);
-  border-radius: 3px;
-}
-
-/* Contenedor de cada Subcategoría (ej: Panes, Galletas) */
-.subcategoria-group {
-  margin-bottom: 40px; /* Más espacio entre subcategorías */
-  background-color: var(--gris-claro); /* Fondo más claro */
-  padding: 25px; /* Más padding */
-  border-left: 8px solid var(--verde-pastel); /* Borde izquierdo más grueso */
-  border-radius: 10px; /* Más redondeado */
-  box-shadow: 0 4px 12px var(--sombra-suave); /* Sombra más definida */
-  transition: transform 0.3s ease;
-}
-
-.subcategoria-group:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 16px var(--sombra-media);
-}
-
-.subcategoria-group h3 { /* Título de la Subcategoría */
-  font-size: 1.8em; /* Aumentar tamaño */
-  color: var(--verde-oscuro);
-  margin-bottom: 25px; /* Más espacio */
-  border-bottom: 1px solid var(--trigo-oscuro);
-  padding-bottom: 10px;
-  font-weight: 600;
-}
-
-/* Contenedor de la Rejilla de Productos */
-.productos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Columnas un poco más grandes */
-  gap: 30px; /* Más espacio entre productos */
-  justify-content: center;
-}
-
-/* Estilo Individual del Producto */
-.producto {
-  background-color: var(--blanco);
-  border: 1px solid #eee; /* Borde más suave */
-  border-radius: 12px; /* Más redondeado */
-  padding: 20px; /* Más padding */
-  text-align: center;
-  box-shadow: 0 5px 15px var(--sombra-suave); /* Sombra más suave */
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 300px; /* Ajuste para mantener tamaño razonable */
-  overflow: hidden; /* Ocultar contenido extra */
-}
-
-.producto:hover {
-  transform: translateY(-8px); /* Mayor elevación */
-  box-shadow: 0 10px 25px var(--sombra-media); /* Sombra más pronunciada */
-}
-
-.producto img {
-  max-width: 100%;
-  height: 150px; /* Aumentar altura fija para las imágenes ligeramente */
-  object-fit: contain;
-  margin: 0 auto 15px auto; /* Más margen inferior */
-  border-radius: 8px; /* Bordes redondeados en imágenes */
-}
-
-.producto h4 {
-  font-size: 1.3em; /* Aumentar tamaño de fuente */
-  color: var(--verde-oscuro);
-  margin-bottom: 10px; /* Más margen */
-  min-height: 2.6em; /* Ajustar altura mínima para 2 líneas */
-  font-weight: 600;
-}
-
-.producto .precio {
+.session-status a {
+  text-decoration: none;
+  color: var(--enlace-primario);
   font-weight: bold;
-  font-size: 1.8em; /* Aumentar tamaño de fuente */
-  color: var(--verde-oscuro);
-  margin-top: auto;
-  margin-bottom: 15px; /* Más margen */
+}
+.session-status a:hover {
+  text-decoration: underline;
 }
 
-.producto button {
-  background-color: var(--verde-pastel);
+.error-message {
+  color: var(--rojo-error);
+  font-weight: bold;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  background-color: rgba(220, 53, 69, 0.1);
+}
+.success-message {
+  color: var(--verde-oscuro); /* Using theme green */
+  font-weight: bold;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  background-color: rgba(46, 139, 87, 0.1);
+}
+
+/* ========= USER AUTHENTICATION FORMS (Login - from index.php, Registration) ========= */
+.user-auth-section { /* General styling for login/auth containers */
+  margin-bottom: 20px;
+  padding: 25px; /* Increased padding */
+  border: 1px solid var(--gris-borde);
+  border-radius: 8px; /* Consistent border-radius */
+  background-color: var(--blanco); /* Brighter background */
+  box-shadow: 0 3px 10px var(--sombra-suave);
+}
+.user-auth-section h2 {
+  margin-top: 0;
+  margin-bottom: 20px; /* Added margin */
+  color: var(--verde-oscuro);
+  text-align: center;
+  font-size: 1.8em;
+}
+.user-auth-section label {
+  display: block;
+  margin-bottom: 8px; /* Increased margin */
+  color: var(--texto-secundario);
+  font-weight: 500;
+}
+.user-auth-section input[type="email"],
+.user-auth-section input[type="password"],
+.user-auth-section input[type="text"],
+.user-auth-section input[type="tel"] {
+  width: 100%; /* Changed from calc for simplicity, padding handled by box-sizing */
+  padding: 12px; /* Increased padding */
+  margin-bottom: 15px; /* Increased margin */
+  border: 1px solid var(--gris-input-borde);
+  border-radius: 5px; /* Consistent border-radius */
+  font-size: 1em;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.user-auth-section input:focus {
+  outline: none;
+  border-color: var(--verde-oscuro);
+  box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.2);
+}
+.user-auth-section button { /* Login button */
+  width: 100%; /* Full width button */
+  padding: 12px 15px;
+  background-color: var(--verde-accion);
   color: var(--blanco);
   border: none;
-  padding: 12px 20px; /* Más padding */
-  border-radius: 8px; /* Más redondeado */
-  cursor: pointer;
-  font-size: 1.1em; /* Aumentar fuente */
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  width: 100%;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.producto button:hover {
-  background-color: var(--verde-oscuro);
-  transform: translateY(-2px); /* Mayor elevación */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-.producto button:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-
-/* --- CARRITO DE COMPRA --- */
-#carrito-section {
-  margin-top: 50px; /* Más margen superior */
-  padding: 30px; /* Más padding */
-  border-top: 2px solid var(--verde-pastel); /* Borde más grueso */
-  background-color: var(--gris-claro); /* Fondo más claro */
-  border-radius: 15px; /* Más redondeado */
-  box-shadow: 0 5px 15px var(--sombra-suave); /* Sombra más definida */
-}
-
-#carrito-section h2 {
-  text-align: center;
-  color: var(--verde-oscuro);
-  font-size: 2.5em; /* Aumentar tamaño */
-  margin-bottom: 25px; /* Más margen */
-  font-weight: 600;
-}
-
-#carrito {
-  list-style-type: none;
-  padding: 0;
-  margin-bottom: 20px; /* Más margen */
-  border: 1px solid var(--trigo-pastel);
-  border-radius: 10px; /* Más redondeado */
-  background-color: var(--blanco);
-  min-height: 80px; /* Aumentar altura mínima */
-  padding: 15px; /* Más padding */
-  box-shadow: inset 0 1px 5px rgba(0,0,0,0.05);
-}
-
-#carrito li {
-  padding: 10px 0; /* Más padding */
-  border-bottom: 1px dashed var(--trigo-pastel);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1.1em; /* Aumentar fuente */
-  color: #555;
-}
-
-#carrito li:last-child {
-  border-bottom: none;
-}
-
-#carrito button {
-  background-color: crimson;
-  color: white;
-  border: none;
-  padding: 6px 10px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 0.9em; /* Aumentar fuente */
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  font-size: 1.1em;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+.user-auth-section button:hover {
+  background-color: var(--verde-accion-hover);
 }
 
-#carrito button:hover {
-  background-color: #d00;
-  transform: translateY(-1px);
+#registro-container { /* Specific styling for registration, more prominent */
+  max-width: 550px; /* Slightly wider */
+  margin: 40px auto; /* Adjusted margin */
+  background: linear-gradient(135deg, var(--verde-oscuro), var(--verde-accion)); /* Theme gradient */
+  padding: 35px; /* Increased padding */
+  border-radius: 15px;
+  box-shadow: 0 8px 20px var(--sombra-media);
+  color: var(--blanco);
 }
-#carrito button:active {
-  transform: translateY(0);
-}
-
-.total-carrito {
-  font-weight: bold;
-  font-size: 2.2em; /* Aumentar tamaño */
-  color: var(--verde-oscuro);
-  background-color: var(--blanco);
-  padding: 15px 25px; /* Más padding */
-  border: 1px solid var(--verde-pastel);
-  border-radius: 10px; /* Más redondeado */
-  display: inline-block;
-  margin-top: 20px; /* Más margen */
-  box-shadow: 0 3px 8px var(--sombra-suave);
-  float: right;
-  clear: both; /* Asegurar que no flote al lado de otros elementos */
-}
-
-/* --- REGISTRO DE CLIENTES --- */
-#registro-container {
-  max-width: 500px; /* Aumentar ancho máximo */
-  margin: 60px auto 20px auto; /* Más margen */
-  background: linear-gradient(135deg, var(--verde-oscuro), #4CAF50); /* Degradado más oscuro y vibrante */
-  padding: 30px; /* Más padding */
-  border-radius: 15px; /* Más redondeado */
-  box-shadow: 0 8px 20px var(--sombra-media); /* Sombra más fuerte */
-  color: var(--blanco); /* Texto blanco para contraste */
-}
-
 #registro-container h2 {
   text-align: center;
   color: var(--blanco);
@@ -363,64 +210,57 @@ main {
   margin-bottom: 25px;
   font-weight: 600;
 }
-
 #registro-form {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Más espacio entre campos */
+  gap: 18px; /* Adjusted gap */
 }
-
 #registro-form label {
-  font-weight: 500; /* Menos negrita */
+  font-weight: 500;
   color: var(--blanco);
-  font-size: 1.1em; /* Aumentar fuente */
+  font-size: 1.05em; /* Adjusted size */
 }
-
-#registro-form input {
-  padding: 12px; /* Más padding */
-  border: none;
-  border-radius: 8px; /* Más redondeado */
-  font-size: 1.05em; /* Aumentar fuente */
-  background-color: rgba(255, 255, 255, 0.9); /* Blanco semitransparente */
-  color: #333;
+#registro-form input { /* Includes text, email, password, tel */
+  padding: 12px;
+  border: none; /* Different from login form inputs */
+  border-radius: 8px;
+  font-size: 1em;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--texto-primario);
   box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
+  width: 100%;
 }
-
 #registro-form input::placeholder {
-  color: #ccc;
+  color: #aaa; /* Lighter placeholder */
 }
-
 #registro-form input:focus {
-  outline: 2px solid var(--trigo-pastel); /* Contorno más visible */
+  outline: 2px solid var(--trigo-pastel);
   background-color: var(--blanco);
-  box-shadow: 0 0 0 4px rgba(255,255,255,0.2);
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.2), inset 0 1px 3px rgba(0,0,0,0.1);
 }
-
 .registro-botones {
   display: flex;
   justify-content: center;
-  margin-top: 30px; /* Más margen */
+  margin-top: 25px; /* Adjusted margin */
 }
-
-.registro-botones button {
+.registro-botones button { /* Register button */
   background-color: var(--blanco);
   color: var(--verde-oscuro);
   font-weight: 700;
-  padding: 12px 30px; /* Más padding */
+  padding: 12px 30px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: 0.3s ease;
-  font-size: 1.2em; /* Aumentar fuente */
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  font-size: 1.2em;
   box-shadow: 0 3px 8px rgba(0,0,0,0.2);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-
 .registro-botones button:hover {
   background-color: var(--trigo-pastel);
-  color: var(--verde-oscuro);
+  color: var(--verde-oscuro); /* Keep color on hover */
   transform: translateY(-2px);
   box-shadow: 0 5px 12px rgba(0,0,0,0.3);
 }
@@ -429,54 +269,306 @@ main {
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* --- Footer --- */
-footer {
+
+/* ========= SEARCH BAR ========= */
+#buscador {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+#input-busqueda {
+  padding: 12px 25px;
+  width: 80%;
+  max-width: 500px;
+  border: 2px solid var(--verde-pastel);
+  border-radius: 30px;
+  font-size: 1.1em;
+  box-shadow: inset 0 2px 5px var(--sombra-suave);
+  outline: none;
+  transition: all 0.3s ease;
+}
+#input-busqueda::placeholder {
+  color: #b0b0b0;
+}
+#input-busqueda:focus {
+  border-color: var(--verde-oscuro);
+  box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.2), inset 0 2px 5px var(--sombra-suave);
+}
+
+/* ========= PRODUCT CATALOG ========= */
+#catalogo {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.categoria-group {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 2px dashed var(--trigo-pastel);
+}
+.categoria-group:last-of-type {
+  border-bottom: none;
+}
+.categoria-group h2 {
+  font-size: 2.8em;
+  color: var(--verde-oscuro);
   text-align: center;
-  padding: 25px; /* Más padding */
-  margin-top: 50px; /* Más margen */
+  margin-bottom: 35px;
+  position: relative;
+  padding-bottom: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.categoria-group h2::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background-color: var(--verde-pastel);
+  border-radius: 3px;
+}
+
+.subcategoria-group {
+  margin-bottom: 40px;
+  background-color: var(--gris-claro);
+  padding: 25px;
+  border-left: 8px solid var(--verde-pastel);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px var(--sombra-suave);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
+}
+.subcategoria-group:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px var(--sombra-media);
+}
+.subcategoria-group h3 {
+  font-size: 1.8em;
+  color: var(--verde-oscuro);
+  margin-bottom: 25px;
+  border-bottom: 1px solid var(--trigo-oscuro);
+  padding-bottom: 10px;
+  font-weight: 600;
+}
+
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  justify-content: center; /* Ensures items are centered if they don't fill the row */
+}
+
+.producto {
+  background-color: var(--blanco);
+  border: 1px solid var(--gris-borde); /* Use variable */
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 5px 15px var(--sombra-suave);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 300px; /* Or adjust as needed */
+  overflow: hidden;
+}
+.producto:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px var(--sombra-media);
+}
+.producto img {
+  max-width: 100%;
+  height: 150px;
+  object-fit: contain;
+  margin: 0 auto 15px auto;
+  border-radius: 8px;
+}
+.producto h4 { /* Product name */
+  font-size: 1.3em;
+  color: var(--verde-oscuro);
+  margin-bottom: 10px;
+  min-height: 2.6em; /* Helps align text if names vary in length */
+  font-weight: 600;
+}
+.producto .precio {
+  font-weight: bold;
+  font-size: 1.8em;
+  color: var(--verde-oscuro);
+  margin-top: auto; /* Pushes price and button down if content above is short */
+  margin-bottom: 15px;
+}
+.producto button { /* Add to cart button */
+  background-color: var(--verde-pastel);
+  color: var(--blanco);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.producto button:hover {
+  background-color: var(--verde-oscuro);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.producto button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* ========= SHOPPING CART SECTION ========= */
+#carrito-section {
+  margin-top: 50px;
+  padding: 30px;
+  border-top: 2px solid var(--verde-pastel);
+  background-color: var(--gris-claro);
+  border-radius: 15px;
+  box-shadow: 0 5px 15px var(--sombra-suave);
+}
+#carrito-section h2 {
+  text-align: center;
+  color: var(--verde-oscuro);
+  font-size: 2.5em;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+#carrito { /* UL for cart items */
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 20px;
+  border: 1px solid var(--trigo-pastel);
+  border-radius: 10px;
+  background-color: var(--blanco);
+  min-height: 80px;
+  padding: 15px;
+  box-shadow: inset 0 1px 5px rgba(0,0,0,0.05);
+}
+#carrito li {
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--trigo-pastel);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1em;
+  color: var(--texto-secundario);
+}
+#carrito li:last-child {
+  border-bottom: none;
+}
+#carrito button { /* Delete item button */
+  background-color: var(--rojo-error);
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+#carrito button:hover {
+  background-color: var(--rojo-error-hover);
+  transform: translateY(-1px);
+}
+#carrito button:active {
+  transform: translateY(0);
+}
+.total-carrito {
+  font-weight: bold;
+  font-size: 2.2em;
+  color: var(--verde-oscuro);
+  background-color: var(--blanco);
+  padding: 15px 25px;
+  border: 1px solid var(--verde-pastel);
+  border-radius: 10px;
+  display: inline-block; /* So it doesn't take full width */
+  margin-top: 20px;
+  box-shadow: 0 3px 8px var(--sombra-suave);
+  /* clear: both; -- Not usually needed with modern layouts like flex/grid */
+}
+#procesar-pedido-btn { /* Checkout button */
+  display: block; /* Make it a block to center it or give it width */
+  margin: 20px auto 0 auto; /* Center if block */
+  padding: 12px 25px;
   background-color: var(--verde-oscuro);
   color: var(--blanco);
-  font-size: 1em;
-  border-radius: 12px; /* Más redondeado */
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-  font-weight: 300;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2em;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+#procesar-pedido-btn:hover {
+  background-color: var(--verde-accion); /* Lighter green on hover */
+  transform: translateY(-2px);
+}
+#carrito-section p > a { /* Links within cart section like "login to checkout" */
+    color: var(--enlace-primario);
+    font-weight: 500;
+}
+#carrito-section p > a:hover {
+    text-decoration: underline;
 }
 
 
-/* --- Media Queries for Responsiveness --- */
+/* ========= FOOTER ========= */
+footer {
+  text-align: center;
+  padding: 25px;
+  margin-top: 50px;
+  background-color: var(--verde-oscuro);
+  color: var(--blanco);
+  font-size: 1em;
+  border-radius: 12px;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+  font-weight: 300;
+}
+footer p { /* Ensure footer text is white */
+    color: var(--blanco);
+}
+
+/* ========= MEDIA QUERIES (RESPONSIVE DESIGN) ========= */
 @media (max-width: 992px) {
   .productos-grid {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 25px;
   }
-
   .categoria-group h2 {
     font-size: 2.2em;
   }
-
   .subcategoria-group h3 {
     font-size: 1.6em;
+  }
+  .user-auth-section, #registro-container {
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
 @media (max-width: 768px) {
   body {
     padding: 10px;
-    padding-top: 70px; /* Adjusted padding-top for tablet header height */
+    padding-top: 70px; /* Adjust for smaller sticky header */
   }
-
   main {
     padding: 20px;
     margin: 15px auto;
   }
-
   .productos-grid {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 20px;
   }
-
   header {
-    height: 70px; /* Slightly smaller height for tablets */
+    height: 70px;
     padding: 8px 15px;
   }
   #logo {
@@ -489,77 +581,72 @@ footer {
   header p {
     font-size: 0.7em;
   }
-
   .categoria-group h2 {
     font-size: 1.8em;
     margin-bottom: 25px;
   }
-
   .subcategoria-group {
     padding: 20px;
   }
-
   .subcategoria-group h3 {
     font-size: 1.4em;
     margin-bottom: 15px;
     padding-bottom: 8px;
   }
-
   .producto {
     padding: 15px;
-    min-height: 280px;
+    min-height: 280px; /* Adjust if needed */
   }
-
   .producto img {
     height: 130px;
     margin-bottom: 10px;
   }
-
   .producto h4 {
     font-size: 1.2em;
   }
-
   .producto .precio {
     font-size: 1.5em;
   }
-
   #input-busqueda {
     width: 95%;
+    font-size: 1em; /* Adjusted for smaller screens */
   }
-
-  #registro-container {
-    padding: 25px;
+  .user-auth-section, #registro-container { /* Auth forms on smaller screens */
+    padding: 20px;
   }
-
+  .user-auth-section h2, #registro-container h2 {
+    font-size: 1.6em;
+  }
   #carrito-section h2 {
     font-size: 2.2em;
+  }
+  .total-carrito {
+    font-size: 1.8em; /* Adjusted for smaller screens */
   }
 }
 
 @media (max-width: 480px) {
   .productos-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Single column */
     gap: 20px;
   }
-
   .producto {
-    width: 100%;
+    /* width: 100%; -- Already handled by grid 1fr */
     margin: 0 auto;
-    min-height: 260px;
+    min-height: auto; /* Allow height to adjust naturally */
   }
   .producto img {
-    height: 100px;
+    height: 100px; /* Smaller images */
   }
-
   body {
-    padding-top: 60px; /* Adjusted padding-top for mobile header height */
+    padding-top: 60px; /* Adjust for smallest sticky header */
   }
-
   header {
-    height: 60px; /* Smallest height for mobile */
-    padding: 8px 10px;
-    flex-wrap: wrap; /* Allow items to wrap if space is too constrained */
-    justify-content: center; /* Center content if it wraps */
+    height: auto; /* Allow header to wrap */
+    min-height: 60px;
+    padding: 10px; /* Adjusted padding */
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
   }
   #logo {
@@ -568,42 +655,50 @@ footer {
   }
   header h1 {
     font-size: 1.2em;
-    margin-right: 0; /* Remove auto margin on wrap */
+    margin-right: 0; /* Center title */
     text-align: center;
-    width: 100%; /* Take full width if wrapped */
+    width: 100%;
   }
   header p {
     font-size: 0.65em;
-    margin-left: 0; /* Remove left margin on wrap */
+    margin-left: 0; /* Center subtitle */
     text-align: center;
-    width: 100%; /* Take full width if wrapped */
+    width: 100%;
   }
-
   .categoria-group h2 {
     font-size: 1.5em;
   }
-
   .subcategoria-group h3 {
     font-size: 1.2em;
-    padding: 10px;
   }
-
+  .subcategoria-group {
+    padding: 15px; /* Reduced padding */
+  }
   #input-busqueda {
-    width: 100%;
-    font-size: 1em;
+    /* width: 100%; -- Already quite wide */
+    font-size: 0.9em; /* Further reduce font size */
   }
-
-  #carrito-section, #registro-container {
+  .user-auth-section, #registro-container, #carrito-section {
     padding: 15px;
   }
-
-  .total-carrito {
+  .user-auth-section h2, #registro-container h2 {
+    font-size: 1.4em;
+  }
+  #carrito-section h2 {
     font-size: 1.8em;
+  }
+  .total-carrito {
+    font-size: 1.6em;
     padding: 10px 15px;
   }
-
-  .registro-botones button {
+  .registro-botones button, .user-auth-section button, #procesar-pedido-btn {
     font-size: 1em;
-    padding: 10px 20px;
+    padding: 10px 15px; /* Standardized padding for smaller buttons */
+  }
+  .producto button {
+    font-size: 1em; /* Product button on small screens */
   }
 }
+
+
+
