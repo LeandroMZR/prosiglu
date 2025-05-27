@@ -34,7 +34,7 @@
 /* ========= BODY & MAIN LAYOUT ========= */
 body {
   background-color: var(--gris-claro);
-  color: var(--texto-primario); /* Changed from --verde-oscuro to a more general text color */
+  color: var(--texto-primario);
   padding: 20px;
   line-height: 1.6;
   padding-top: 80px; /* Account for sticky header */
@@ -101,7 +101,7 @@ header p { /* Subtitle in header */
   text-align: right;
 }
 
-/* ========= SESSION STATUS & MESSAGES (from index.php) ========= */
+/* ========= SESSION STATUS & MESSAGES ========= */
 .session-status {
   text-align: right;
   padding: 10px;
@@ -131,7 +131,7 @@ header p { /* Subtitle in header */
   background-color: rgba(220, 53, 69, 0.1);
 }
 .success-message {
-  color: var(--verde-oscuro); /* Using theme green */
+  color: var(--verde-oscuro);
   font-weight: bold;
   padding: 8px;
   margin-bottom: 10px;
@@ -139,25 +139,25 @@ header p { /* Subtitle in header */
   background-color: rgba(46, 139, 87, 0.1);
 }
 
-/* ========= USER AUTHENTICATION FORMS (Login - from index.php, Registration) ========= */
-.user-auth-section { /* General styling for login/auth containers */
+/* ========= USER AUTHENTICATION FORMS (Login, Registration) ========= */
+.user-auth-section {
   margin-bottom: 20px;
-  padding: 25px; /* Increased padding */
+  padding: 25px;
   border: 1px solid var(--gris-borde);
-  border-radius: 8px; /* Consistent border-radius */
-  background-color: var(--blanco); /* Brighter background */
+  border-radius: 8px;
+  background-color: var(--blanco);
   box-shadow: 0 3px 10px var(--sombra-suave);
 }
 .user-auth-section h2 {
   margin-top: 0;
-  margin-bottom: 20px; /* Added margin */
+  margin-bottom: 20px;
   color: var(--verde-oscuro);
   text-align: center;
   font-size: 1.8em;
 }
 .user-auth-section label {
   display: block;
-  margin-bottom: 8px; /* Increased margin */
+  margin-bottom: 8px;
   color: var(--texto-secundario);
   font-weight: 500;
 }
@@ -165,11 +165,11 @@ header p { /* Subtitle in header */
 .user-auth-section input[type="password"],
 .user-auth-section input[type="text"],
 .user-auth-section input[type="tel"] {
-  width: 100%; /* Changed from calc for simplicity, padding handled by box-sizing */
-  padding: 12px; /* Increased padding */
-  margin-bottom: 15px; /* Increased margin */
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
   border: 1px solid var(--gris-input-borde);
-  border-radius: 5px; /* Consistent border-radius */
+  border-radius: 5px;
   font-size: 1em;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -178,8 +178,8 @@ header p { /* Subtitle in header */
   border-color: var(--verde-oscuro);
   box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.2);
 }
-.user-auth-section button { /* Login button */
-  width: 100%; /* Full width button */
+.user-auth-section button {
+  width: 100%;
   padding: 12px 15px;
   background-color: var(--verde-accion);
   color: var(--blanco);
@@ -194,11 +194,11 @@ header p { /* Subtitle in header */
   background-color: var(--verde-accion-hover);
 }
 
-#registro-container { /* Specific styling for registration, more prominent */
-  max-width: 550px; /* Slightly wider */
-  margin: 40px auto; /* Adjusted margin */
-  background: linear-gradient(135deg, var(--verde-oscuro), var(--verde-accion)); /* Theme gradient */
-  padding: 35px; /* Increased padding */
+#registro-container {
+  max-width: 550px;
+  margin: 40px auto;
+  background: linear-gradient(135deg, var(--verde-oscuro), var(--verde-accion));
+  padding: 35px;
   border-radius: 15px;
   box-shadow: 0 8px 20px var(--sombra-media);
   color: var(--blanco);
@@ -213,16 +213,16 @@ header p { /* Subtitle in header */
 #registro-form {
   display: flex;
   flex-direction: column;
-  gap: 18px; /* Adjusted gap */
+  gap: 18px;
 }
 #registro-form label {
   font-weight: 500;
   color: var(--blanco);
-  font-size: 1.05em; /* Adjusted size */
+  font-size: 1.05em;
 }
-#registro-form input { /* Includes text, email, password, tel */
+#registro-form input {
   padding: 12px;
-  border: none; /* Different from login form inputs */
+  border: none;
   border-radius: 8px;
   font-size: 1em;
   background-color: rgba(255, 255, 255, 0.9);
@@ -232,7 +232,7 @@ header p { /* Subtitle in header */
   width: 100%;
 }
 #registro-form input::placeholder {
-  color: #aaa; /* Lighter placeholder */
+  color: #aaa;
 }
 #registro-form input:focus {
   outline: 2px solid var(--trigo-pastel);
@@ -242,9 +242,9 @@ header p { /* Subtitle in header */
 .registro-botones {
   display: flex;
   justify-content: center;
-  margin-top: 25px; /* Adjusted margin */
+  margin-top: 25px;
 }
-.registro-botones button { /* Register button */
+.registro-botones button {
   background-color: var(--blanco);
   color: var(--verde-oscuro);
   font-weight: 700;
@@ -260,7 +260,7 @@ header p { /* Subtitle in header */
 }
 .registro-botones button:hover {
   background-color: var(--trigo-pastel);
-  color: var(--verde-oscuro); /* Keep color on hover */
+  color: var(--verde-oscuro);
   transform: translateY(-2px);
   box-shadow: 0 5px 12px rgba(0,0,0,0.3);
 }
@@ -338,7 +338,7 @@ header p { /* Subtitle in header */
   border-left: 8px solid var(--verde-pastel);
   border-radius: 10px;
   box-shadow: 0 4px 12px var(--sombra-suave);
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .subcategoria-group:hover {
   transform: translateY(-3px);
@@ -357,12 +357,12 @@ header p { /* Subtitle in header */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 30px;
-  justify-content: center; /* Ensures items are centered if they don't fill the row */
+  justify-content: center;
 }
 
 .producto {
   background-color: var(--blanco);
-  border: 1px solid var(--gris-borde); /* Use variable */
+  border: 1px solid var(--gris-borde);
   border-radius: 12px;
   padding: 20px;
   text-align: center;
@@ -371,7 +371,7 @@ header p { /* Subtitle in header */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 300px; /* Or adjust as needed */
+  min-height: 300px;
   overflow: hidden;
 }
 .producto:hover {
@@ -385,21 +385,21 @@ header p { /* Subtitle in header */
   margin: 0 auto 15px auto;
   border-radius: 8px;
 }
-.producto h4 { /* Product name */
+.producto h4 {
   font-size: 1.3em;
   color: var(--verde-oscuro);
   margin-bottom: 10px;
-  min-height: 2.6em; /* Helps align text if names vary in length */
+  min-height: 2.6em;
   font-weight: 600;
 }
 .producto .precio {
   font-weight: bold;
   font-size: 1.8em;
   color: var(--verde-oscuro);
-  margin-top: auto; /* Pushes price and button down if content above is short */
+  margin-top: auto;
   margin-bottom: 15px;
 }
-.producto button { /* Add to cart button */
+.producto button {
   background-color: var(--verde-pastel);
   color: var(--blanco);
   border: none;
@@ -439,6 +439,8 @@ header p { /* Subtitle in header */
   margin-bottom: 25px;
   font-weight: 600;
 }
+
+/* === Styles for Cart List Items (from previous step, integrated) === */
 #carrito { /* UL for cart items */
   list-style-type: none;
   padding: 0;
@@ -462,6 +464,28 @@ header p { /* Subtitle in header */
 #carrito li:last-child {
   border-bottom: none;
 }
+#carrito li .item-details {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+#carrito li .item-details img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  margin-right: 10px;
+  border-radius: 3px;
+}
+#carrito li .item-details span {
+  flex-grow: 1;
+}
+#carrito li .item-quantity,
+#carrito li .item-price {
+  flex-shrink: 0;
+  width: 60px;
+  text-align: right;
+  margin-left: 10px;
+}
 #carrito button { /* Delete item button */
   background-color: var(--rojo-error);
   color: white;
@@ -479,6 +503,9 @@ header p { /* Subtitle in header */
 #carrito button:active {
   transform: translateY(0);
 }
+/* === End Cart List Item Styles === */
+
+
 .total-carrito {
   font-weight: bold;
   font-size: 2.2em;
@@ -487,14 +514,13 @@ header p { /* Subtitle in header */
   padding: 15px 25px;
   border: 1px solid var(--verde-pastel);
   border-radius: 10px;
-  display: inline-block; /* So it doesn't take full width */
+  display: inline-block;
   margin-top: 20px;
   box-shadow: 0 3px 8px var(--sombra-suave);
-  /* clear: both; -- Not usually needed with modern layouts like flex/grid */
 }
-#procesar-pedido-btn { /* Checkout button */
-  display: block; /* Make it a block to center it or give it width */
-  margin: 20px auto 0 auto; /* Center if block */
+#procesar-pedido-btn {
+  display: block;
+  margin: 20px auto 0 auto;
   padding: 12px 25px;
   background-color: var(--verde-oscuro);
   color: var(--blanco);
@@ -507,16 +533,39 @@ header p { /* Subtitle in header */
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 #procesar-pedido-btn:hover {
-  background-color: var(--verde-accion); /* Lighter green on hover */
+  background-color: var(--verde-accion);
   transform: translateY(-2px);
 }
-#carrito-section p > a { /* Links within cart section like "login to checkout" */
+#procesar-pedido-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+#procesar-pedido-btn:disabled:hover {
+    background-color: #ccc;
+    transform: none;
+}
+
+#carrito-section p > a {
     color: var(--enlace-primario);
     font-weight: 500;
 }
 #carrito-section p > a:hover {
     text-decoration: underline;
 }
+
+/* === Checkout Success Message Style (from previous step, integrated) === */
+.checkout-success-message {
+  color: green; /* Consider using var(--verde-oscuro) */
+  font-weight: bold;
+  background-color: #dff0d8; /* Or var(--verde-pastel) with opacity */
+  border: 1px solid #d0e9c6; /* Or a darker theme green */
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1.1em;
+}
+/* === End Checkout Success Message Style === */
 
 
 /* ========= FOOTER ========= */
@@ -531,7 +580,7 @@ footer {
   box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
   font-weight: 300;
 }
-footer p { /* Ensure footer text is white */
+footer p {
     color: var(--blanco);
 }
 
@@ -557,7 +606,7 @@ footer p { /* Ensure footer text is white */
 @media (max-width: 768px) {
   body {
     padding: 10px;
-    padding-top: 70px; /* Adjust for smaller sticky header */
+    padding-top: 70px;
   }
   main {
     padding: 20px;
@@ -595,7 +644,7 @@ footer p { /* Ensure footer text is white */
   }
   .producto {
     padding: 15px;
-    min-height: 280px; /* Adjust if needed */
+    min-height: 280px;
   }
   .producto img {
     height: 130px;
@@ -609,9 +658,9 @@ footer p { /* Ensure footer text is white */
   }
   #input-busqueda {
     width: 95%;
-    font-size: 1em; /* Adjusted for smaller screens */
+    font-size: 1em;
   }
-  .user-auth-section, #registro-container { /* Auth forms on smaller screens */
+  .user-auth-section, #registro-container {
     padding: 20px;
   }
   .user-auth-section h2, #registro-container h2 {
@@ -621,30 +670,36 @@ footer p { /* Ensure footer text is white */
     font-size: 2.2em;
   }
   .total-carrito {
-    font-size: 1.8em; /* Adjusted for smaller screens */
+    font-size: 1.8em;
+  }
+  .registro-botones button, .user-auth-section button, #procesar-pedido-btn {
+    font-size: 1.1em;
+    padding: 12px 15px;
+  }
+  .producto button {
+    font-size: 1.1em;
   }
 }
 
 @media (max-width: 480px) {
   .productos-grid {
-    grid-template-columns: 1fr; /* Single column */
+    grid-template-columns: 1fr;
     gap: 20px;
   }
   .producto {
-    /* width: 100%; -- Already handled by grid 1fr */
     margin: 0 auto;
-    min-height: auto; /* Allow height to adjust naturally */
+    min-height: auto;
   }
   .producto img {
-    height: 100px; /* Smaller images */
+    height: 100px;
   }
   body {
-    padding-top: 60px; /* Adjust for smallest sticky header */
+    padding-top: 60px;
   }
   header {
-    height: auto; /* Allow header to wrap */
+    height: auto;
     min-height: 60px;
-    padding: 10px; /* Adjusted padding */
+    padding: 10px;
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
@@ -655,13 +710,13 @@ footer p { /* Ensure footer text is white */
   }
   header h1 {
     font-size: 1.2em;
-    margin-right: 0; /* Center title */
+    margin-right: 0;
     text-align: center;
     width: 100%;
   }
   header p {
     font-size: 0.65em;
-    margin-left: 0; /* Center subtitle */
+    margin-left: 0;
     text-align: center;
     width: 100%;
   }
@@ -672,11 +727,10 @@ footer p { /* Ensure footer text is white */
     font-size: 1.2em;
   }
   .subcategoria-group {
-    padding: 15px; /* Reduced padding */
+    padding: 15px;
   }
   #input-busqueda {
-    /* width: 100%; -- Already quite wide */
-    font-size: 0.9em; /* Further reduce font size */
+    font-size: 0.9em;
   }
   .user-auth-section, #registro-container, #carrito-section {
     padding: 15px;
@@ -693,12 +747,9 @@ footer p { /* Ensure footer text is white */
   }
   .registro-botones button, .user-auth-section button, #procesar-pedido-btn {
     font-size: 1em;
-    padding: 10px 15px; /* Standardized padding for smaller buttons */
+    padding: 10px 15px;
   }
   .producto button {
-    font-size: 1em; /* Product button on small screens */
+    font-size: 1em;
   }
 }
-
-
-

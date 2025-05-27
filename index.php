@@ -1,12 +1,13 @@
 <?php
-session_start(); // Start the session at the very beginning
+session_start();
 
 $nombre_usuario_display = '';
+$is_logged_in = false;
 if (isset($_SESSION['user_id']) && isset($_SESSION['usuario_nombre'])) {
     $nombre_usuario_display = htmlspecialchars($_SESSION['usuario_nombre']);
+    $is_logged_in = true;
 }
 
-// Handle messages from login/registration attempts
 $login_message = '';
 $registro_message = '';
 
@@ -18,29 +19,30 @@ if (isset($_GET['login_error'])) {
     elseif ($error_type === 'dberror') $login_message = '<p class="error-message">Error de base de datos. Intente más tarde.</p>';
 }
 if (isset($_GET['login']) && $_GET['login'] === 'success') {
-    // Optional: could display a "Login successful" message briefly, but usually just showing logged in state is enough.
 }
 
 if (isset($_GET['registro']) && $_GET['registro'] === 'exito') {
     $registro_message = '<p class="success-message">¡Registro exitoso! Por favor, inicia sesión.</p>';
 }
 if (isset($_GET['registro_error'])) {
+    $error_msg_code = $_GET['registro_error'];
     $error_msg = htmlspecialchars(urldecode($_GET['registro_error']));
-    if (strpos($error_msg, "Este correo electrónico o nombre de usuario ya está registrado") !== false) {
-         $registro_message = '<p class="error-message">' . $error_msg . '</p>';
-    } else if ($_GET['registro_error'] === 'empty_required_fields') {
+
+    if ($error_msg_code === 'duplicate') {
+         $registro_message = '<p class="error-message">Este correo electrónico o nombre de usuario ya está registrado.</p>';
+    } else if ($error_msg_code === 'empty_required_fields') {
         $registro_message = '<p class="error-message">Correo y contraseña son campos obligatorios para el registro.</p>';
-    } else if ($_GET['registro_error'] === 'invalid_email') {
+    } else if ($error_msg_code === 'invalid_email') {
         $registro_message = '<p class="error-message">Formato de correo electrónico inválido.</p>';
-    } else if ($_GET['registro_error'] === 'password_short') {
+    } else if ($error_msg_code === 'password_short') {
         $registro_message = '<p class="error-message">La contraseña debe tener al menos 8 caracteres.</p>';
     }
     else {
         $registro_message = '<p class="error-message">Error en el registro: ' . $error_msg . '</p>';
     }
 }
+
 if (isset($_GET['logout']) && $_GET['logout'] === 'success') {
-    // Optional: could display a "Logout successful" message.
     $login_message = '<p class="success-message">Has cerrado sesión exitosamente.</p>';
 }
 
@@ -54,7 +56,6 @@ if (isset($_GET['logout']) && $_GET['logout'] === 'success') {
   <title>Prosiglu - Tienda sin gluten</title>
   <link rel="stylesheet" href="estilos.css" />
   <style>
-    /* Basic styling for messages and forms, add to your estilos.css */
     .user-auth-section { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;}
     .user-auth-section h2 { margin-top: 0; }
     .user-auth-section label { display: block; margin-bottom: 5px; }
@@ -69,6 +70,48 @@ if (isset($_GET['logout']) && $_GET['logout'] === 'success') {
     .session-status a { text-decoration: none; color: #337ab7; font-weight: bold; }
     .error-message { color: red; font-weight: bold; }
     .success-message { color: green; font-weight: bold; }
+
+    #carrito li {
+        border-bottom: 1px solid #eee;
+        padding: 10px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #carrito li span {
+        flex-grow: 1;
+        margin-right: 10px;
+    }
+     #carrito li .item-details {
+         flex-grow: 1;
+         display: flex;
+         align-items: center;
+     }
+     #carrito li .item-details img {
+         width: 40px;
+         height: 40px;
+         object-fit: cover;
+         margin-right: 10px;
+         border-radius: 3px;
+     }
+     #carrito li .item-details span {
+         flex-grow: 1;
+     }
+     #carrito li .item-quantity,
+     #carrito li .item-price {
+         flex-shrink: 0;
+         width: 60px;
+         text-align: right;
+         margin-left: 10px;
+     }
+
+
+    .total-carrito {
+        font-size: 1.2em;
+        font-weight: bold;
+        text-align: right;
+        margin-top: 15px;
+    }
   </style>
 </head>
 
@@ -80,19 +123,23 @@ if (isset($_GET['logout']) && $_GET['logout'] === 'success') {
   </header>
 
   <div class="session-status">
-    <?php if (isset($_SESSION['user_id'])): ?>
+    <?php if ($is_logged_in): ?>
       <p>Bienvenido/a, <?php echo $nombre_usuario_display; ?>! <a href="logout.php">Cerrar Sesión</a></p>
+      <input type="hidden" id="is-logged-in" value="1">
+      <input type="hidden" id="logged-in-username" value="<?php echo $nombre_usuario_display; ?>">
     <?php else: ?>
       <p>¿Ya tienes cuenta? <a href="#login-container">Iniciar Sesión</a> | ¿Eres nuevo? <a href="#registro-container">Regístrate</a></p>
+      <input type="hidden" id="is-logged-in" value="0">
+      <input type="hidden" id="logged-in-username" value="">
     <?php endif; ?>
   </div>
 
   <main>
-    <?php if (!isset($_SESSION['user_id'])): ?>
+    <?php if (!$is_logged_in): ?>
       <section id="login-container" class="user-auth-section">
         <h2>Iniciar Sesión</h2>
-        <?php echo $login_message; // Display login messages here ?>
-        <?php if (isset($_GET['registro']) && $_GET['registro'] === 'exito') echo $registro_message; // Display registration success message above login ?>
+        <?php echo $login_message; ?>
+        <?php if (isset($_GET['registro']) && $_GET['registro'] === 'exito') echo $registro_message; ?>
         <form id="login-form" action="login.php" method="POST">
           <label for="login-correo">Correo Electrónico:</label>
           <input type="email" id="login-correo" name="correo" placeholder="ejemplo@gmail.com" required />
@@ -106,7 +153,7 @@ if (isset($_GET['logout']) && $_GET['logout'] === 'success') {
 
       <section id="registro-container" class="user-auth-section">
         <h2>Registro de Cliente</h2>
-        <?php if (!isset($_GET['registro']) || $_GET['registro'] !== 'exito') echo $registro_message; // Display registration errors here ?>
+        <?php if (!isset($_GET['registro']) || $_GET['registro'] !== 'exito') echo $registro_message; ?>
         <form id="registro-form" action="registro.php" method="POST">
           <label for="correo">Correo Electrónico (será tu usuario):</label>
           <input type="email" id="correo" name="correo" placeholder="ejemplo@gmail.com" required />
@@ -114,9 +161,13 @@ if (isset($_GET['logout']) && $_GET['logout'] === 'success') {
           <label for="contrasena-reg">Contraseña (mínimo 8 caracteres):</label>
           <input type="password" id="contrasena-reg" name="contrasena" required />
 
+          <label for="usuario_name">Nombre de usuario (Opcional, si la DB lo requiere):</label>
+          <input type="text" id="usuario_name" name="usuario" placeholder="ejemplo_usuario" />
+
+
           <label for="telefono">Número de teléfono:</label>
           <input type="tel" id="telefono" name="telefono" placeholder="600123456" pattern="[0-9]{9}" />
-          
+
           <label for="direccion">Dirección:</label>
           <input type="text" id="direccion" name="direccion" placeholder="Calle Falsa 123, Piso 4B" />
 
@@ -140,10 +191,12 @@ if (isset($_GET['logout']) && $_GET['logout'] === 'success') {
     <section id="catalogo">
       <div class="productos-por-categoria">
         <?php
-        // Ensure db.php is included if not already by session logic or other means
-        // For product display, connection needs to be open if not already handled
         if (!isset($conn) || !$conn instanceof mysqli || $conn->connect_error) {
-            include 'includes/db.php'; // Re-include if connection was closed or not established
+            require 'includes/db.php';
+        }
+
+        if ($conn->connect_error) {
+            die("Error de conexión a la base de datos: " . $conn->connect_error);
         }
 
 
@@ -173,30 +226,25 @@ if (isset($_GET['logout']) && $_GET['logout'] === 'success') {
                     echo '<img src="imagenes/' . htmlspecialchars($producto["imagen"]) . '" alt="' . htmlspecialchars($producto["nombre"]) . '" />';
                     echo '<h4>' . htmlspecialchars($producto["nombre"]) . '</h4>';
                     echo '<p class="precio">€' . number_format($producto["precio"], 2) . '</p>';
-                    echo '<button>Agregar al carrito</button>'; // This button's functionality might need to consider user session for cart persistence
+                    echo '<button class="add-to-cart-btn" data-gtin="' . htmlspecialchars($producto["gtin"]) . '">Agregar al carrito</button>';
                     echo '</div>';
                   }
                 } else {
                   echo '<p>No hay productos en esta subcategoría.</p>';
                 }
-                echo '</div>'; // .productos-grid
-                echo '</div>'; // .subcategoria-group
+                echo '</div>';
+                echo '</div>';
               }
             } else {
               echo '<p>No hay subcategorías en esta categoría.</p>';
             }
-            echo '</div>'; // .categoria-group
+            echo '</div>';
           }
         } else {
           echo '<p>No se encontraron categorías.</p>';
         }
 
-        // Close connection if it was opened here for product display
-        // Be careful if $conn is used elsewhere after this point on the page.
-        // The login/registration scripts close their own connections.
-        if (isset($conn) && $conn instanceof mysqli && !isset($_SESSION['user_id'])) { // Only close if not part of a user session script that might need it later
-             // $conn->close(); // Commented out: login.php and registro.php close their own. This one is for catalog.
-                               // The original code closed it at the end of the PHP block.
+        if (isset($conn) && $conn instanceof mysqli && !$conn->connect_error) {
         }
         ?>
       </div>
@@ -204,25 +252,27 @@ if (isset($_GET['logout']) && $_GET['logout'] === 'success') {
 
     <section id="carrito-section">
       <h2>Carrito de compras</h2>
-      <ul id="carrito"></ul>
+      <div id="cart-message-area"></div>
+      <ul id="carrito">
+          <p id="loading-cart-message">Cargando carrito...</p>
+      </ul>
       <p id="total" class="total-carrito">Total: €0.00</p>
-      <?php if (isset($_SESSION['user_id'])): ?>
-        <button id="procesar-pedido-btn">Proceder al Pago</button> 
-        <!-- Add JavaScript to handle this button, e.g., redirect to a checkout page -->
+      <?php if ($is_logged_in): ?>
+        <button id="procesar-pedido-btn">Proceder al Pago</button>
       <?php else: ?>
         <p>Debes <a href="#login-container">iniciar sesión</a> o <a href="#registro-container">registrarte</a> para guardar tu carrito y proceder al pago.</p>
+         <button id="procesar-pedido-btn" disabled>Proceder al Pago</button>
       <?php endif; ?>
     </section>
-    
+
   </main>
 
   <footer>
-    <p>&copy; <?php echo date("Y"); ?> Catálogo Sin Gluten. Todos los derechos reservados.</p>
+    <p>© <?php echo date("Y"); ?> Catálogo Sin Gluten. Todos los derechos reservados.</p>
   </footer>
 
   <script src="script.js"></script>
   <script>
-    // Smooth scroll for anchor links if desired
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -236,27 +286,25 @@ if (isset($_GET['logout']) && $_GET['logout'] === 'success') {
         });
     });
 
-    // Clear messages on input focus to make UX cleaner
     const loginForm = document.getElementById('login-form');
     const registroForm = document.getElementById('registro-form');
+    const cartMessageArea = document.getElementById('cart-message-area');
 
-    function clearMessages(containerId) {
-        const container = document.getElementById(containerId);
+    function clearMessages(container) {
         if (container) {
-            const errorMessages = container.querySelectorAll('.error-message');
-            const successMessages = container.querySelectorAll('.success-message');
-            errorMessages.forEach(el => el.style.display = 'none');
-            successMessages.forEach(el => el.style.display = 'none');
+            const messages = container.querySelectorAll('.error-message, .success-message');
+            messages.forEach(el => el.style.display = 'none');
         }
     }
 
     if (loginForm) {
-        loginForm.addEventListener('focusin', () => clearMessages('login-container'));
+        loginForm.addEventListener('focusin', () => clearMessages(document.getElementById('login-container')));
     }
     if (registroForm) {
-        registroForm.addEventListener('focusin', () => clearMessages('registro-container'));
+        registroForm.addEventListener('focusin', () => clearMessages(document.getElementById('registro-container')));
     }
-
+    if (cartMessageArea) {
+    }
   </script>
 </body>
 </html>
